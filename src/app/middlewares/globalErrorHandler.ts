@@ -11,6 +11,7 @@ import handleCastError from '../../errors/handleCastError';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../shared/logger';
+import handlePrismaClientValidationError from '../../errors/handlePrismaClientValidationError';
 
 const globalErrorHandler: ErrorRequestHandler = (
   error,
@@ -21,6 +22,7 @@ const globalErrorHandler: ErrorRequestHandler = (
   config.env === 'development'
     ? console.log(`🐱‍🏍 globalErrorHandler ~~`, { error })
     : errorlogger.error(`🐱‍🏍 globalErrorHandler ~~`, error);
+  
 
   let statusCode = 500;
   let message = 'Something went wrong !';
@@ -31,7 +33,8 @@ const globalErrorHandler: ErrorRequestHandler = (
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
-  } else if (error instanceof ZodError) {
+  }
+  else if (error instanceof ZodError) {
     const simplifiedError = handleZodError(error);
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
