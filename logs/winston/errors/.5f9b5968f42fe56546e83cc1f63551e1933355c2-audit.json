@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/.5f9b5968f42fe56546e83cc1f63551e1933355c2-audit.json",
+    "files": [
+        {
+            "date": 1692340332006,
+            "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/phu-2023-18-08-12-error.log",
+            "hash": "575974da4b40729ca132ecabcea5199c4282548ef01b518bb25e13cb89bc9e9d"
+        },
+        {
+            "date": 1692364651573,
+            "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/phu-2023-18-08-19-error.log",
+            "hash": "b6deaf4c93e2c6ab502166f8b58f7070db1ba27e9955cf139e506becc1a17f7a"
+        },
+        {
+            "date": 1692367208957,
+            "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/phu-2023-18-08-20-error.log",
+            "hash": "6c8dc45662b4f52d68485c2506464a69f8b8f31404b02917a04e924423b974d4"
+        }
+    ],
+    "hashType": "sha256"
+}
