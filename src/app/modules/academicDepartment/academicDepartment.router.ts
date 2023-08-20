@@ -7,5 +7,6 @@ import { AcademicDepartmentZodValidation } from './academicDepartment.ZodValidat
 const router = express.Router()
 
 router.post('/create-department', validateRequest(AcademicDepartmentZodValidation.createAcademicDepartment), AcademicDepartmentController.createAcademicDepartment)
+router.get('/', AcademicDepartmentController.getAllAcademicDepartment)
 
 export const AcademicDepartmentRouter = router
