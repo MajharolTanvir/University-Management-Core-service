@@ -48,7 +48,8 @@ const getAllAcademicDepartment = async (
     });
   }
 
-  const whereCondition: Prisma.AcademicDepartmentWhereInput = andConditions.length > 0 ? {AND: andConditions} : {}
+  const whereCondition: Prisma.AcademicDepartmentWhereInput =
+    andConditions.length > 0 ? { AND: andConditions } : {};
 
   const result = await prisma.academicDepartment.findMany({
     where: whereCondition,
@@ -67,7 +68,20 @@ const getAllAcademicDepartment = async (
   };
 };
 
+const getSingleAcademicDepartment = async (id: string) => {
+  const result = await prisma.academicDepartment.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      academicFaculty: true,
+    },
+  });
+  return result;
+};
+
 export const AcademicDepartmentService = {
   createAcademicDepartment,
   getAllAcademicDepartment,
+  getSingleAcademicDepartment,
 };
