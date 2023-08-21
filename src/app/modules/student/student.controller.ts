@@ -8,15 +8,14 @@ import { studentFilterableFields } from './student.constant';
 
 const createStudent = catchAsync(async (req: Request, res: Response) => {
   const result = await StudentService.createStudent(req.body);
-  
-    sendResponse(res, {
-        statusCode: httpStatus.OK,
-        success: true,
-        message: "Student created successfully",
-        data: result
-    })
-});
 
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student created successfully',
+    data: result,
+  });
+});
 
 const getAllStudent = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, studentFilterableFields);
@@ -42,9 +41,32 @@ const getSingleStudent = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateStudent = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await StudentService.updateStudent(id, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student updated successfully',
+    data: result,
+  });
+});
+
+const deleteStudent = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await StudentService.deleteStudent(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student deleted successfully',
+    data: result,
+  });
+});
 
 export const StudentsController = {
   createStudent,
   getAllStudent,
   getSingleStudent,
-}; 
+  updateStudent,
+  deleteStudent,
+};

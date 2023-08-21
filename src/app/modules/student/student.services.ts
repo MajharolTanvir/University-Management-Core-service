@@ -1,24 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Prisma, Student } from "@prisma/client"
-import { prisma } from "../../../shared/prisma"
-import { IStudentFilterRequest } from "./student.interface"
-import { IPaginationOptions } from "../../../interfaces/pagination"
-import { IGenericResponse } from "../../../interfaces/common"
-import { paginationHelpers } from "../../../helpers/paginationHelper"
-import { studentRelationalFields, studentRelationalFieldsMapper, studentSearchableFields } from "./student.constant"
-
+import { Prisma, Student } from '@prisma/client';
+import { prisma } from '../../../shared/prisma';
+import { IStudentFilterRequest } from './student.interface';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+import { IGenericResponse } from '../../../interfaces/common';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
+import {
+  studentRelationalFields,
+  studentRelationalFieldsMapper,
+  studentSearchableFields,
+} from './student.constant';
 
 const createStudent = async (payload: Student) => {
-    const result = await prisma.student.create({
-        data: payload,
-        include: {
-            academicSemester: true,
-            academicFaculty: true,
-            academicDepartment: true
-        }
-    })
-    return result
-}
+  const result = await prisma.student.create({
+    data: payload,
+    include: {
+      academicSemester: true,
+      academicFaculty: true,
+      academicDepartment: true,
+    },
+  });
+  return result;
+};
 
 const getAllStudent = async (
   filters: IStudentFilterRequest,
@@ -107,10 +110,42 @@ const getSingleStudent = async (id: string): Promise<Student | null> => {
   return result;
 };
 
+const updateStudent = async (
+  id: string,
+  payload: Partial<Student>
+): Promise<Student | null> => {
+  const result = await prisma.student.update({
+    where: {
+      id,
+    },
+    data: payload,
+    include: {
+      academicFaculty: true,
+      academicDepartment: true,
+      academicSemester: true,
+    },
+  });
+  return result;
+};
 
+const deleteStudent = async (id: string): Promise<Student | null> => {
+  const result = await prisma.student.delete({
+    where: {
+      id,
+    },
+    include: {
+      academicFaculty: true,
+      academicDepartment: true,
+      academicSemester: true,
+    },
+  });
+  return result;
+};
 
 export const StudentService = {
   createStudent,
   getSingleStudent,
   getAllStudent,
+  updateStudent,
+  deleteStudent,
 };
