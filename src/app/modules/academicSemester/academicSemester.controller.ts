@@ -22,10 +22,13 @@ const createAcademicSemester = catchAsync(
 );
 
 const getAllAcademicSemester = catchAsync(
-    async (req: Request, res: Response) => {
-        const filters = pick(req.query, AcademicSemesterFilterableField )
-        const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder'])
-        const result = await AcademicSemesterService.getAllAcademicSemester(filters, options);
+  async (req: Request, res: Response) => {
+    const filters = pick(req.query, AcademicSemesterFilterableField);
+    const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+    const result = await AcademicSemesterService.getAllAcademicSemester(
+      filters,
+      options
+    );
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
@@ -37,7 +40,6 @@ const getAllAcademicSemester = catchAsync(
   }
 );
 
-
 const getSingleAcademicSemester = catchAsync(
   async (req: Request, res: Response) => {
     const result = await AcademicSemesterService.getSingleAcademicSemester(
@@ -48,7 +50,38 @@ const getSingleAcademicSemester = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: 'Single academic semester get successfully',
-      data: result
+      data: result,
+    });
+  }
+);
+
+const updateAcademicSemester = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await AcademicSemesterService.updateAcademicSemester(
+      req.params.id,
+      req.body
+    );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Academic semester updated successfully',
+      data: result,
+    });
+  }
+);
+
+const deleteAcademicSemester = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await AcademicSemesterService.deleteAcademicSemester(
+      req.params.id
+    );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Academic semester deleted successfully',
+      data: result,
     });
   }
 );
@@ -57,4 +90,6 @@ export const AcademicSemesterController = {
   createAcademicSemester,
   getAllAcademicSemester,
   getSingleAcademicSemester,
+  updateAcademicSemester,
+  deleteAcademicSemester,
 };

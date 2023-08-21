@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AcademicSemester, Prisma } from '@prisma/client';
-import { IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { AcademicSemesterSearchableFields } from './academicSemester.constant';
 import { prisma } from '../../../shared/prisma';
+import { AcademicSemesterSearchableFields } from './academicSemester.constant';
 import { IAcademicSemesterFilterRequest } from './academicSemester.interface';
 
 const createAcademicSemester = async (
@@ -85,8 +85,36 @@ const getSingleAcademicSemester = async (
   return result;
 };
 
+const updateAcademicSemester = async (
+  id: string,
+  payload: Partial<AcademicSemester>
+): Promise<AcademicSemester | null> => {
+  const result = await prisma.academicSemester.update({
+    where: {
+      id,
+    },
+    data: payload,
+  });
+
+  return result;
+};
+
+const deleteAcademicSemester = async (
+  id: string
+): Promise<AcademicSemester | null> => {
+  const result = await prisma.academicSemester.delete({
+    where: {
+      id,
+    },
+  });
+
+  return result;
+};
+
 export const AcademicSemesterService = {
   createAcademicSemester,
   getAllAcademicSemester,
   getSingleAcademicSemester,
+  updateAcademicSemester,
+  deleteAcademicSemester,
 };
