@@ -15,4 +15,4 @@ router.get('/', StudentsController.getAllStudent);
 
 router.get('/:id', StudentsController.getSingleStudent);
 
-export const StudentRoutes = router;
+export const StudentRouter = router;
