@@ -36,16 +36,16 @@ const getAllAcademicFaculty = async (
   }
 
   if (Object.keys(filterData).length > 0) {
-      andConditions.push({
-        AND: Object.keys(filterData).map(key => ({
-          [key]: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            equals: (filterData as any)[key],
-          },
-        })),
-      });
+    andConditions.push({
+      AND: Object.keys(filterData).map(key => ({
+        [key]: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          equals: (filterData as any)[key],
+        },
+      })),
+    });
   }
-    
+
   const whereCondition: Prisma.AcademicFacultyWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
 
@@ -77,8 +77,34 @@ const getSingleAcademicFaculty = async (
   return result;
 };
 
+const updatedAcademicFaculty = async (
+  id: string,
+  payload: Partial<AcademicFaculty>
+): Promise<AcademicFaculty | null> => {
+  const result = await prisma.academicFaculty.update({
+    where: {
+      id,
+    },
+    data: payload,
+  });
+  return result;
+};
+
+const deletedAcademicFaculty = async (
+  id: string
+): Promise<AcademicFaculty | null> => {
+  const result = await prisma.academicFaculty.delete({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
 export const AcademicFacultyService = {
   createAcademicFaculty,
   getAllAcademicFaculty,
   getSingleAcademicFaculty,
+  updatedAcademicFaculty,
+  deletedAcademicFaculty,
 };

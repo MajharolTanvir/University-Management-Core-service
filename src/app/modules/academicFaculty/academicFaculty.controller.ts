@@ -54,8 +54,41 @@ const getSingleAcademicFaculty = catchAsync(
   }
 );
 
+const updatedAcademicFaculty = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await AcademicFacultyService.updatedAcademicFaculty(
+      req.params.id,
+      req.body
+    );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Academic faculty updated successfully',
+      data: result,
+    });
+  }
+);
+
+const deletedAcademicFaculty = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await AcademicFacultyService.deletedAcademicFaculty(
+      req.params.id
+    );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Academic faculty deleted successfully',
+      data: result,
+    });
+  }
+);
+
 export const AcademicFacultyController = {
   createAcademicFaculty,
   getSingleAcademicFaculty,
   getAllAcademicFaculty,
+  updatedAcademicFaculty,
+  deletedAcademicFaculty,
 };
