@@ -20,13 +20,13 @@ const createAcademicDepartment = catchAsync(
   }
 );
 
-
 const getAllAcademicDepartment = catchAsync(
   async (req: Request, res: Response) => {
-    const filters = pick(req.query, ['searchTerm', 'title'])
-    const options = pick(req.query, ['page', 'limit', 'sortOrder', 'sortBy'])
+    const filters = pick(req.query, ['searchTerm', 'title']);
+    const options = pick(req.query, ['page', 'limit', 'sortOrder', 'sortBy']);
     const result = await AcademicDepartmentService.getAllAcademicDepartment(
-      filters, options
+      filters,
+      options
     );
 
     sendResponse(res, {
@@ -38,7 +38,6 @@ const getAllAcademicDepartment = catchAsync(
     });
   }
 );
-
 
 const getSingleAcademicDepartment = catchAsync(
   async (req: Request, res: Response) => {
@@ -55,9 +54,42 @@ const getSingleAcademicDepartment = catchAsync(
   }
 );
 
+const updateAcademicDepartment = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const payload = req.body;
+    const result = await AcademicDepartmentService.updateAcademicDepartment(
+      id,
+      payload
+    );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Academic department updated successfully',
+      data: result,
+    });
+  }
+);
+
+const deleteAcademicDepartment = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await AcademicDepartmentService.deleteAcademicDepartment(id);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Academic department deleted successfully',
+      data: result,
+    });
+  }
+);
 
 export const AcademicDepartmentController = {
   createAcademicDepartment,
   getAllAcademicDepartment,
   getSingleAcademicDepartment,
+  updateAcademicDepartment,
+  deleteAcademicDepartment
 };
