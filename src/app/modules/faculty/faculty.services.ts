@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Faculty, Prisma } from "@prisma/client";
-import { prisma } from "../../../shared/prisma";
-import { IPaginationOptions } from "../../../interfaces/pagination";
-import { IGenericResponse } from "../../../interfaces/common";
-import { paginationHelpers } from "../../../helpers/paginationHelper";
-import { IFacultyFilterRequest } from "./faculty.interface";
-import { facultyRelationalFields, facultyRelationalFieldsMapper, facultySearchableFields } from "./faculty.constant";
-
+import { Faculty, Prisma } from '@prisma/client';
+import { prisma } from '../../../shared/prisma';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+import { IGenericResponse } from '../../../interfaces/common';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IFacultyFilterRequest } from './faculty.interface';
+import {
+  facultyRelationalFields,
+  facultyRelationalFieldsMapper,
+  facultySearchableFields,
+} from './faculty.constant';
 
 const createFaculty = async (data: Faculty): Promise<Faculty> => {
   const result = await prisma.faculty.create({
@@ -104,11 +107,40 @@ const getSingleFaculty = async (id: string): Promise<Faculty | null> => {
   return result;
 };
 
+const updateFaculty = async (
+  id: string,
+  payload: Partial<Faculty>
+): Promise<Faculty | null> => {
+  const result = await prisma.faculty.update({
+    where: {
+      id,
+    },
+    data: payload,
+    include: {
+      academicFaculty: true,
+      academicDepartment: true,
+    },
+  });
+  return result;
+};
 
-
+const deleteFaculty = async (id: string): Promise<Faculty | null> => {
+  const result = await prisma.faculty.delete({
+    where: {
+      id,
+    },
+    include: {
+      academicFaculty: true,
+      academicDepartment: true,
+    },
+  });
+  return result;
+};
 
 export const FacultyService = {
   createFaculty,
   getAllFaculty,
   getSingleFaculty,
+  updateFaculty,
+  deleteFaculty,
 };
