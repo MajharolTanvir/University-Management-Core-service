@@ -5,6 +5,7 @@ import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import pick from '../../../shared/pick';
 import { AcademicFacultyFilterAbleField } from './academicFaculty.constan';
+import { paginationFields } from '../../../constants/pagination';
 
 const createAcademicFaculty = catchAsync(
   async (req: Request, res: Response) => {
@@ -22,7 +23,7 @@ const createAcademicFaculty = catchAsync(
 const getAllAcademicFaculty = catchAsync(
   async (req: Request, res: Response) => {
     const filters = pick(req.query, AcademicFacultyFilterAbleField);
-    const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+    const options = pick(req.query, paginationFields);
 
     const result = await AcademicFacultyService.getAllAcademicFaculty(
       filters,

@@ -5,6 +5,7 @@ import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import pick from '../../../shared/pick';
 import { studentFilterableFields } from './student.constant';
+import { paginationFields } from '../../../constants/pagination';
 
 const createStudent = catchAsync(async (req: Request, res: Response) => {
   const result = await StudentService.createStudent(req.body);
@@ -19,7 +20,7 @@ const createStudent = catchAsync(async (req: Request, res: Response) => {
 
 const getAllStudent = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, studentFilterableFields);
-  const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+  const options = pick(req.query, paginationFields);
   const result = await StudentService.getAllStudent(filters, options);
   sendResponse(res, {
     statusCode: httpStatus.OK,

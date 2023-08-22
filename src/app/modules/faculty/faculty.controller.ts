@@ -5,6 +5,7 @@ import sendResponse from '../../../shared/sendResponse';
 import pick from '../../../shared/pick';
 import { facultyFilterableFields } from './faculty.constant';
 import { Request, Response } from 'express';
+import { paginationFields } from '../../../constants/pagination';
 
 const createFaculty = catchAsync(async (req: Request, res: Response) => {
   const result = await FacultyService.createFaculty(req.body);
@@ -18,7 +19,7 @@ const createFaculty = catchAsync(async (req: Request, res: Response) => {
 
 const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, facultyFilterableFields);
-  const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+  const options = pick(req.query, paginationFields);
   const result = await FacultyService.getAllFaculty(filters, options);
   sendResponse(res, {
     statusCode: httpStatus.OK,

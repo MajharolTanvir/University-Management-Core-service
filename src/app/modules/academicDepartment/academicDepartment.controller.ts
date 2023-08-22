@@ -4,6 +4,8 @@ import { AcademicDepartmentService } from './academicDepartment.services';
 import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import pick from '../../../shared/pick';
+import { paginationFields } from '../../../constants/pagination';
+import { academicDepartmentFilterAbleField } from './academicDepartment.constant';
 
 const createAcademicDepartment = catchAsync(
   async (req: Request, res: Response) => {
@@ -22,8 +24,8 @@ const createAcademicDepartment = catchAsync(
 
 const getAllAcademicDepartment = catchAsync(
   async (req: Request, res: Response) => {
-    const filters = pick(req.query, ['searchTerm', 'title']);
-    const options = pick(req.query, ['page', 'limit', 'sortOrder', 'sortBy']);
+    const filters = pick(req.query, academicDepartmentFilterAbleField);
+    const options = pick(req.query, paginationFields);
     const result = await AcademicDepartmentService.getAllAcademicDepartment(
       filters,
       options
