@@ -154,6 +154,11 @@
             "date": 1693225346149,
             "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/successes/phu-2023-28-08-18-success.log",
             "hash": "f9f4bd3814b18a426b33f727c9b19e85ef2dcfa6a214cc01e2eae9812d54baee"
+        },
+        {
+            "date": 1693227848116,
+            "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/successes/phu-2023-28-08-19-success.log",
+            "hash": "249198bf34fb064855383e08b6290d7f8f0791efcce56edcc01aab70b32b8325"
         }
     ],
     "hashType": "sha256"
