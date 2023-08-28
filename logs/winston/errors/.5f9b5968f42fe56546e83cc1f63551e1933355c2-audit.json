@@ -124,6 +124,26 @@
             "date": 1692810336279,
             "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/phu-2023-23-08-23-error.log",
             "hash": "08d65e095b75b5f20893d721f8179e3fb5d0c9593631b22fc267f9aba89f760a"
+        },
+        {
+            "date": 1693195781461,
+            "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/phu-2023-28-08-10-error.log",
+            "hash": "72768e1c9d247c9f11b8fad09c4b868203e47f9bcc803f441be505157c3cb7b7"
+        },
+        {
+            "date": 1693199233446,
+            "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/phu-2023-28-08-11-error.log",
+            "hash": "1afe37ff66210a9c8c7ce32f92d0785df30dbc459b571e9b3dcc61827bb7dbec"
+        },
+        {
+            "date": 1693215684638,
+            "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/phu-2023-28-08-15-error.log",
+            "hash": "81884d3b33176dae26f394159f3530de558353c5fec02060182271666c60e171"
+        },
+        {
+            "date": 1693217240310,
+            "name": "/home/webshilpo/Working-files/NEXT.JS/university-management-core/logs/winston/errors/phu-2023-28-08-16-error.log",
+            "hash": "2fc50158482511f6cf45d456225eb8285e3748a362cb92cec172d1e5d0abf934"
         }
     ],
     "hashType": "sha256"
