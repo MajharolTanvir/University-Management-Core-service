@@ -34,12 +34,14 @@ router.delete(
 router.post(
   '/:id/assign-faculties',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  validateRequest(CourseZodValidation.assignCourse),
   CourseController.assignFaculties
 );
 
 router.delete(
   '/:id/remove-faculties',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  validateRequest(CourseZodValidation.assignCourse),
   CourseController.removeFaculties
 );
 
