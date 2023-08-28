@@ -20,6 +20,17 @@ const createSemesterRegistration = z.object({
   }),
 });
 
+const updateSemesterRegistration = z.object({
+  body: z.object({
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    minCredit: z.number().optional(),
+    maxCredit: z.number().optional(),
+    academicSemesterId: z.string().optional(),
+  }),
+});
+
 export const SemesterRegistrationValidation = {
   createSemesterRegistration,
+  updateSemesterRegistration,
 };
