@@ -14,4 +14,21 @@ router.post(
   OfferedCoursesController.createOfferedCourses
 );
 
+router.get('/', OfferedCoursesController.getAllOfferedCourses);
+
+router.get('/:id', OfferedCoursesController.getSingleOfferedCourses);
+
+router.patch(
+  '/:id',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
+  validateRequest(OfferedCourseValidation.updateOfferedCourses),
+  OfferedCoursesController.updateOfferedCourses
+);
+
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
+  OfferedCoursesController.deleteOfferedCourses
+);
+
 export const OfferedCoursesRouter = router;
