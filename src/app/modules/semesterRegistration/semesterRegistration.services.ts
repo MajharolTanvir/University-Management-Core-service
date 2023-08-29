@@ -23,7 +23,7 @@ const createSemesterRegistration = async (
       where: {
         OR: [
           {
-            status: SemesterRegistrationStatus.UPCOMMING,
+            status: SemesterRegistrationStatus.UPCOMING,
           },
           {
             status: SemesterRegistrationStatus.ONGOING,
@@ -139,12 +139,12 @@ const updateSemesterRegistration = async (
 
   if (
     payload.status &&
-    isExist.status === 'UPCOMMING' &&
+    isExist.status === 'UPCOMING' &&
     payload.status !== 'ONGOING'
   ) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
-      'Change only UPCOMMING to ONGOING'
+      'Change only UPCOMING to ONGOING'
     );
   }
 
