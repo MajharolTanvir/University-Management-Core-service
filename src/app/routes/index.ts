@@ -8,7 +8,7 @@ import { BuildingRouter } from '../modules/building/building.router';
 import { RoomRouter } from '../modules/room/room.router';
 import { CourseRouter } from '../modules/course/course.router';
 import { SemesterRegistrationRouter } from '../modules/semesterRegistration/semesterRegistration.router';
-import { OfferedCoursesRouter } from '../modules/offerdCourse/offerdCourse.router';
+import { OfferedCoursesRouter } from '../modules/offerdCourse/offeredCourse.router';
 
 const router = express.Router();
 
