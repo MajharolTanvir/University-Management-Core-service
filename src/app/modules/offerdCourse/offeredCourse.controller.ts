@@ -3,6 +3,9 @@ import catchAsync from '../../../shared/catchAsync';
 import { OfferedCourseServices } from './offeredCourse.services';
 import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
+import pick from '../../../shared/pick';
+import { paginationFields } from '../../../constants/pagination';
+import { offeredCourseFilterableFields } from './offeredCourse.constant';
 
 const createOfferedCourses = catchAsync(async (req: Request, res: Response) => {
   const result = await OfferedCourseServices.createOfferedCourses(req.body);
@@ -16,13 +19,19 @@ const createOfferedCourses = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllOfferedCourses = catchAsync(async (req: Request, res: Response) => {
-  const result = await OfferedCourseServices.getAllOfferedCourses();
+  const filters = pick(req.query, offeredCourseFilterableFields);
+  const options = pick(req.query, paginationFields);
+  const result = await OfferedCourseServices.getAllOfferedCourses(
+    filters,
+    options
+  );
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Offered courses retrieved successfully',
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 

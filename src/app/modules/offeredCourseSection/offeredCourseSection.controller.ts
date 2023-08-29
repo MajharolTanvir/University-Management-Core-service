@@ -34,7 +34,8 @@ const getAllOfferedCourseSection = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: 'Offered course sections retrieved successfully',
-      data: result,
+      meta: result.meta,
+      data: result.date,
     });
   }
 );
