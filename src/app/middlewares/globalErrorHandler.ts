@@ -5,14 +5,13 @@ import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import config from '../../config';
 import ApiError from '../../errors/ApiError';
 import handleValidationError from '../../errors/handleValidationError';
-
 import { ZodError } from 'zod';
-import handleCastError from '../../errors/handleCastError';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../shared/logger';
 import handlePrismaClientValidationError from '../../errors/handlePrismaClientValidationError';
 import { Prisma } from '@prisma/client';
+import handleUnknownRequestError from '../../errors/handleUnknownRequestError';
 
 const globalErrorHandler: ErrorRequestHandler = (
   error,
@@ -40,8 +39,8 @@ const globalErrorHandler: ErrorRequestHandler = (
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
-  } else if (error?.name === 'CastError') {
-    const simplifiedError = handleCastError(error);
+  } else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    const simplifiedError = handleUnknownRequestError(error);
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
