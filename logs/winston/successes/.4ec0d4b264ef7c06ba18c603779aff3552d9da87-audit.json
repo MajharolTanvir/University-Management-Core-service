@@ -24,6 +24,11 @@
             "date": 1693299602124,
             "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/phu-2023-29-08-15-success.log",
             "hash": "bead09375f7ee0ff2a42f9a716feb2a33404f28b9834c558455d55e37769ddcc"
+        },
+        {
+            "date": 1693308103789,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/phu-2023-29-08-17-success.log",
+            "hash": "c818ddcfe9c7ae733fccd9fa3821992d6f669f68b22fdd1e939db237da317685"
         }
     ],
     "hashType": "sha256"
