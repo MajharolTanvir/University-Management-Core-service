@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/.4ec0d4b264ef7c06ba18c603779aff3552d9da87-audit.json",
+    "files": [
+        {
+            "date": 1693278211606,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/phu-2023-29-08-09-success.log",
+            "hash": "85ea209a90a123d518c33be1b342d4e091d663b8f0193d1c4400f0d16a54cdb4"
+        }
+    ],
+    "hashType": "sha256"
+}

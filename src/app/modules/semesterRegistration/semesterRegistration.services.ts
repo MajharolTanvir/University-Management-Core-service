@@ -1,36 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Prisma, SemesterRegistration, SemesterRegistrationStatus } from '@prisma/client';
+import {
+  Prisma,
+  SemesterRegistration,
+  SemesterRegistrationStatus,
+} from '@prisma/client';
 import { prisma } from '../../../shared/prisma';
 import ApiError from '../../../errors/ApiError';
 import httpStatus from 'http-status';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { ISemesterRegistrationFilterRequest } from './semesterRegistration.interface';
-import { semesterRegistrationRelationalFieldsMapper, semesterRegistrationSearchableFields } from './semesterRegistration.constant';
+import {
+  semesterRegistrationRelationalFieldsMapper,
+  semesterRegistrationSearchableFields,
+} from './semesterRegistration.constant';
 
 const createSemesterRegistration = async (
   payload: SemesterRegistration
 ): Promise<SemesterRegistration> => {
-    const isAnySemesterRegUpcomingOrOngoing =
-      await prisma.semesterRegistration.findFirst({
-        where: {
-          OR: [
-            {
-              status: SemesterRegistrationStatus.UPCOMMING,
-            },
-            {
-              status: SemesterRegistrationStatus.ONGOING,
-            },
-          ],
-        },
-      });
-    
-    if (isAnySemesterRegUpcomingOrOngoing) {
-        throw new ApiError(httpStatus.BAD_REQUEST, `There is already an ${isAnySemesterRegUpcomingOrOngoing.status} registration`)
-    }
-      const result = await prisma.semesterRegistration.create({
-        data: payload,
-      });
+  const isAnySemesterRegUpcomingOrOngoing =
+    await prisma.semesterRegistration.findFirst({
+      where: {
+        OR: [
+          {
+            status: SemesterRegistrationStatus.UPCOMMING,
+          },
+          {
+            status: SemesterRegistrationStatus.ONGOING,
+          },
+        ],
+      },
+    });
+
+  if (isAnySemesterRegUpcomingOrOngoing) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      `There is already an ${isAnySemesterRegUpcomingOrOngoing.status} registration`
+    );
+  }
+  const result = await prisma.semesterRegistration.create({
+    data: payload,
+  });
 
   return result;
 };
@@ -113,12 +123,47 @@ const getSingleSemesterRegistration = async (id: string) => {
   return result;
 };
 
-const updateSemesterRegistration = async (id: string, payload: Partial<SemesterRegistration>) => {
+const updateSemesterRegistration = async (
+  id: string,
+  payload: Partial<SemesterRegistration>
+) => {
+  const isExist = await prisma.semesterRegistration.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Semester not found');
+  }
+
+  if (
+    payload.status &&
+    isExist.status === 'UPCOMMING' &&
+    payload.status !== 'ONGOING'
+  ) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Change only UPCOMMING to ONGOING'
+    );
+  }
+
+  if (
+    payload.status &&
+    isExist.status === 'ONGOING' &&
+    payload.status !== 'ENDED'
+  ) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Change only ONGOING to ENDED');
+  }
+
   const result = await prisma.semesterRegistration.update({
     where: {
       id,
     },
     data: payload,
+    include: {
+      academicSemester: true,
+    },
   });
 
   return result;
