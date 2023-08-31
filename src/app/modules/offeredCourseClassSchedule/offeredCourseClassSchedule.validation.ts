@@ -1,5 +1,5 @@
-import { WeekDays } from "@prisma/client";
-import { z } from "zod";
+import { z } from 'zod';
+import { daysInWeek } from './offeredCourseClassSchedule.constant';
 
 const timeStringSchema = z.string().refine(
   time => {
@@ -15,8 +15,8 @@ const timeStringSchema = z.string().refine(
 const createOfferedCourseClassSchedule = z
   .object({
     body: z.object({
-      dayOfWeek: z.enum([...WeekDays] as [string, ...string[]], {
-        required_error: 'Day must be select from a week',
+      dayOfWeek: z.enum([...daysInWeek] as [string, ...string[]], {
+        required_error: 'Day of week is required',
       }),
       startTime: timeStringSchema,
       endTime: timeStringSchema,
@@ -41,9 +41,7 @@ const createOfferedCourseClassSchedule = z
     {
       message: 'Start time must be before end time',
     }
-);
-  
-
+  );
 
 const updateOfferedCourseClassSchedule = z.object({
   body: z.object({
@@ -52,7 +50,6 @@ const updateOfferedCourseClassSchedule = z.object({
     offeredCourseSectionId: z.string().optional(),
   }),
 });
-
 
 export const OfferedCourseClassScheduleValidation = {
   createOfferedCourseClassSchedule,

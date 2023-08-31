@@ -24,3 +24,13 @@ export const IOfferedCourseClassScheduleFilterRequest = [
   'offeredCourseSectionId',
   'semesterRegistrationId',
 ];
+
+export const daysInWeek = [
+  'SATURDAY',
+  'SUNDAY',
+  'MONDAY',
+  'TUESDAY',
+  'WEDNESDAY',
+  'THURSDAY',
+  'FRIDAY',
+];

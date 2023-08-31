@@ -24,12 +24,9 @@ const createOfferedCourseClassSchedule = catchAsync(
 );
 
 const getAllOfferedCourseClassSchedule = catchAsync(
-    async (req: Request, res: Response) => {
-        const filters = pick(
-          req.query,
-          IOfferedCourseClassScheduleFilterRequest
-        );
-        const options = pick(req.query, paginationFields);
+  async (req: Request, res: Response) => {
+    const filters = pick(req.query, IOfferedCourseClassScheduleFilterRequest);
+    const options = pick(req.query, paginationFields);
     const result =
       await OfferedCourseClassScheduleService.getAllOfferedCourseClassSchedule(
         filters,
@@ -61,8 +58,43 @@ const getSingleOfferedCourseClassSchedule = catchAsync(
   }
 );
 
+const updateOfferedCourseClassSchedule = catchAsync(
+  async (req: Request, res: Response) => {
+    const result =
+      await OfferedCourseClassScheduleService.updateOfferedCourseClassSchedule(
+        req.params.id,
+        req.body
+      );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Offered course class schedule updated successfully',
+      data: result,
+    });
+  }
+);
+
+const deleteOfferedCourseClassSchedule = catchAsync(
+  async (req: Request, res: Response) => {
+    const result =
+      await OfferedCourseClassScheduleService.deleteOfferedCourseClassSchedule(
+        req.params.id
+      );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Offered course class schedule deleted successfully',
+      data: result,
+    });
+  }
+);
+
 export const OfferedCourseClassScheduleController = {
   createOfferedCourseClassSchedule,
   getAllOfferedCourseClassSchedule,
   getSingleOfferedCourseClassSchedule,
+  updateOfferedCourseClassSchedule,
+  deleteOfferedCourseClassSchedule,
 };

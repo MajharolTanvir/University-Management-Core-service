@@ -4,8 +4,6 @@ import { hasTimeConflict } from "../../../shared/utils";
 import { prisma } from "../../../shared/prisma";
 import { OfferedCourseClassSchedule } from "@prisma/client";
 
-
-
 const checkedRoomAvailable = async (payload: OfferedCourseClassSchedule) => {
   const alreadyBookedRoomOnDay =
     await prisma.offeredCourseClassSchedule.findMany({
