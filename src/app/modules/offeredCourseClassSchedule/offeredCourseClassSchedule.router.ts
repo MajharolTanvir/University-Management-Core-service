@@ -8,4 +8,14 @@ router.post(
   OfferedCourseClassScheduleController.createOfferedCourseClassSchedule
 );
 
+router.get(
+  '/',
+  OfferedCourseClassScheduleController.getAllOfferedCourseClassSchedule
+);
+
+router.get(
+  '/:id',
+  OfferedCourseClassScheduleController.getSingleOfferedCourseClassSchedule
+);
+
 export const OfferedCourseClassScheduleRouter = router;
