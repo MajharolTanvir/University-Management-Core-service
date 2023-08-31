@@ -1,24 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
-import catchAsync from '../../../shared/catchAsync';
-import { SemesterRegistrationServices } from './semesterRegistration.services';
-import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
-import pick from '../../../shared/pick';
 import { paginationFields } from '../../../constants/pagination';
+import catchAsync from '../../../shared/catchAsync';
+import pick from '../../../shared/pick';
+import sendResponse from '../../../shared/sendResponse';
 import { semesterRegistrationFilterableFields } from './semesterRegistration.constant';
+import { SemesterRegistrationServices } from './semesterRegistration.services';
 
-const createSemesterRegistration = catchAsync(async (req: Request, res: Response) => {
-  const result = await SemesterRegistrationServices.createSemesterRegistration(
-    req.body
-  );
+const createSemesterRegistration = catchAsync(
+  async (req: Request, res: Response) => {
+    const result =
+      await SemesterRegistrationServices.createSemesterRegistration(req.body);
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Semester registration created',
-    data: result,
-  });
-});
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Semester registration created',
+      data: result,
+    });
+  }
+);
 
 const getAllSemesterRegistration = catchAsync(
   async (req: Request, res: Response) => {
@@ -88,6 +90,22 @@ const deleteSemesterRegistration = catchAsync(
   }
 );
 
+const createStudentSemesterRegistration = catchAsync(
+  async (req: Request, res: Response) => {
+    const student = (req as any).user
+    const result =
+      await SemesterRegistrationServices.createStudentSemesterRegistration(
+        student.userId
+      );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Student semester registered successfully',
+      data: result,
+    });
+  }
+);
 
 export const SemesterRegistrationController = {
   createSemesterRegistration,
@@ -95,4 +113,5 @@ export const SemesterRegistrationController = {
   getSingleSemesterRegistration,
   updateSemesterRegistration,
   deleteSemesterRegistration,
+  createStudentSemesterRegistration,
 };

@@ -37,7 +37,8 @@ const getAllOfferedCourseClassSchedule = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: 'Offered course class schedules retrieved successfully',
-      data: result,
+      meta: result.meta,
+      data: result.data,
     });
   }
 );

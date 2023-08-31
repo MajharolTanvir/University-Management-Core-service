@@ -32,7 +32,27 @@ const updateSemesterRegistration = z.object({
   }),
 });
 
+const createStudentSemesterRegistration = z.object({
+  body: z.object({
+    semesterRegistrationId: z.string({
+      required_error: 'Semester registration id is required',
+    }),
+    studentId: z.string({
+      required_error: 'Student id is required',
+    }),
+  }),
+});
+
+const updateStudentSemesterRegistration = z.object({
+  body: z.object({
+    semesterRegistrationId: z.string().optional(),
+    studentId: z.string().optional(),
+  }),
+});
+
 export const SemesterRegistrationValidation = {
   createSemesterRegistration,
   updateSemesterRegistration,
+  createStudentSemesterRegistration,
+  updateStudentSemesterRegistration,
 };

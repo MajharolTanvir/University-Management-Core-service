@@ -34,4 +34,12 @@ router.delete(
   SemesterRegistrationController.deleteSemesterRegistration
 );
 
+
+router.post(
+  '/create-student-semester-registration',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.createStudentSemesterRegistration
+);
+
+
 export const SemesterRegistrationRouter = router;
