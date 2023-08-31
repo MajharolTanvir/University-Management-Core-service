@@ -10,6 +10,7 @@ import { CourseRouter } from '../modules/course/course.router';
 import { SemesterRegistrationRouter } from '../modules/semesterRegistration/semesterRegistration.router';
 import { OfferedCoursesRouter } from '../modules/offerdCourse/offeredCourse.router';
 import { OfferedCourseSectionRouter } from '../modules/offeredCourseSection/offeredCourseSection.router';
+import { OfferedCourseClassScheduleRouter } from '../modules/offeredCourseClassSchedule/offeredCourseClassSchedule.router';
 
 const router = express.Router();
 
@@ -58,6 +59,10 @@ const moduleRoutes = [
     path: '/offered-course-sections',
     routes: OfferedCourseSectionRouter,
   },
+  {
+    path: '/offered-course-class-schedule',
+    routes: OfferedCourseClassScheduleRouter
+  }
 ];
 
 moduleRoutes.forEach(route => router.use(route.path, route.routes));

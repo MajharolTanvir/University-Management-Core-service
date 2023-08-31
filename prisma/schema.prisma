@@ -218,10 +218,10 @@ model OfferedCourseClassSchedule {
   endTime               String
   createdAt             DateTime             @default(now())
   updatedAt             DateTime             @updatedAt
-  offeredCourseSectioId String
-  offeredCourseSectio   OfferedCourseSection @relation(fields: [offeredCourseSectioId], references: [id])
-  semesterRegistraionId String
-  semesterRegistraion   SemesterRegistration @relation(fields: [semesterRegistraionId], references: [id])
+  offeredCourseSectionId String
+  offeredCourseSection   OfferedCourseSection @relation(fields: [offeredCourseSectionId], references: [id])
+  semesterRegistrationId String
+  semesterRegistration   SemesterRegistration @relation(fields: [semesterRegistrationId], references: [id])
   roomId                String
   room                  Room                 @relation(fields: [roomId], references: [id])
   facultyId             String
