@@ -15,7 +15,9 @@ import {
 const createOfferedCourseClassSchedule = async (
   payload: OfferedCourseClassSchedule
 ): Promise<OfferedCourseClassSchedule> => {
+  await OfferedCourseClassScheduleUtils.checkedFacultyAvailable(payload);
   await OfferedCourseClassScheduleUtils.checkedRoomAvailable(payload);
+
 
   const result = await prisma.offeredCourseClassSchedule.create({
     data: payload,

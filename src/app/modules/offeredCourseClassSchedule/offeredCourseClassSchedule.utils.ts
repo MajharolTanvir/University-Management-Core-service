@@ -28,14 +28,40 @@ const checkedRoomAvailable = async (payload: OfferedCourseClassSchedule) => {
   };
 
   if (hasTimeConflict(existingSlot, newSlot)) {
-    throw new ApiError(
-      httpStatus.CONFLICT,
-      'The time and room is already booked for another class'
-    );
+    throw new ApiError(httpStatus.CONFLICT, 'Room is already booked!');
+  }
+};  
+
+const checkedFacultyAvailable = async (payload: OfferedCourseClassSchedule) => {
+  const alreadyFacultyAssigned =
+    await prisma.offeredCourseClassSchedule.findMany({
+      where: {
+        dayOfWeek: payload.dayOfWeek,
+        faculty: {
+          id: payload.facultyId,
+        },
+      },
+    });
+
+  const existingSlot = await alreadyFacultyAssigned.map(schedule => ({
+    startTime: schedule.startTime,
+    endTime: schedule.endTime,
+    room: schedule.roomId,
+  }));
+
+  const newSlot = {
+    startTime: payload.startTime,
+    endTime: payload.endTime,
+    room: payload.roomId,
+  };
+
+  if (hasTimeConflict(existingSlot, newSlot)) {
+    throw new ApiError(httpStatus.CONFLICT, 'Faculty is already assigned!');
   }
 };  
 
 
 export const OfferedCourseClassScheduleUtils = {
   checkedRoomAvailable,
+  checkedFacultyAvailable,
 };
