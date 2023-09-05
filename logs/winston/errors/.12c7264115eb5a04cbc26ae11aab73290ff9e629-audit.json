@@ -64,6 +64,21 @@
             "date": 1693905939143,
             "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-05-09-15-error.log",
             "hash": "7fa730142a62925871b6d9fdf8970eaac47234073763d27dc4a77869e1eb273d"
+        },
+        {
+            "date": 1693908027463,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-05-09-16-error.log",
+            "hash": "5fcd26e57e3484399d66e124f77ca150606370e3ac364bb1a08b88041c69cd87"
+        },
+        {
+            "date": 1693911607144,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-05-09-17-error.log",
+            "hash": "1440ac53c490c8a1b25f18bc6f4a664aad67d8496d7b7b9ef1c362294ac0c1be"
+        },
+        {
+            "date": 1693916854080,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-05-09-18-error.log",
+            "hash": "e309962f06e1961ced50ced06cfaf1bceed9947aff9955a56b1c110e00c34e3b"
         }
     ],
     "hashType": "sha256"

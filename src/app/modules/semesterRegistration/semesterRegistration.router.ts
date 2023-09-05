@@ -41,5 +41,17 @@ router.post(
   SemesterRegistrationController.createStudentSemesterRegistration
 );
 
+router.post(
+  '/enroll-from-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.enrollFromCourse
+);
+
+router.post(
+  '/withdrew-from-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.withdrewFromCourse
+);
+
 
 export const SemesterRegistrationRouter = router;

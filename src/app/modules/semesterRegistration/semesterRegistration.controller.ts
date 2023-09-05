@@ -107,6 +107,39 @@ const createStudentSemesterRegistration = catchAsync(
   }
 );
 
+const enrollFromCourse = catchAsync(
+  async (req: Request, res: Response) => {
+    const student = (req as any).user;
+    const result =
+      await SemesterRegistrationServices.enrollFromCourse(
+        student.userId, req.body
+      );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Enroll course successfully',
+      data: result,
+    });
+  }
+);
+
+const withdrewFromCourse = catchAsync(async (req: Request, res: Response) => {
+  const student = (req as any).user;
+  const result = await SemesterRegistrationServices.withdrewFromCourse(
+    student.userId,
+    req.body
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Enroll course successfully',
+    data: result,
+  });
+});
+
+
 export const SemesterRegistrationController = {
   createSemesterRegistration,
   getAllSemesterRegistration,
@@ -114,4 +147,6 @@ export const SemesterRegistrationController = {
   updateSemesterRegistration,
   deleteSemesterRegistration,
   createStudentSemesterRegistration,
+  enrollFromCourse,
+  withdrewFromCourse,
 };
