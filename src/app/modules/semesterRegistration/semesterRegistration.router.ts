@@ -66,4 +66,11 @@ router.post(
   SemesterRegistrationController.confirmCourseRegistration
 );
 
+
+router.post(
+  '/:id/start-new-semester',
+  auth(ENUM_USER_ROLE.ADMIN),
+  SemesterRegistrationController.startNewSemester
+);
+
 export const SemesterRegistrationRouter = router;

@@ -17,6 +17,7 @@ model AcademicSemester {
   code                 String
   startMonth           String
   endMonth             String
+  isCurrent            Boolean?               @default(false)
   createdAt            DateTime               @default(now())
   updatedAt            DateTime               @updatedAt
   students             Student[]
@@ -72,9 +73,9 @@ model Student {
   academicFacultyId String
   academicFaculty   AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
 
-  academicDepartmentId              String
-  academicDepartment                AcademicDepartment                  @relation(fields: [academicDepartmentId], references: [id])
-  studentSemesterRegistrations      StudentSemesterRegistration[]
+  academicDepartmentId               String
+  academicDepartment                 AcademicDepartment                  @relation(fields: [academicDepartmentId], references: [id])
+  studentSemesterRegistrations       StudentSemesterRegistration[]
   studentSemesterRegistrationCourses StudentSemesterRegistrationCourse[]
 
   @@map("students")
@@ -165,53 +166,53 @@ model CourseFaculty {
 }
 
 model OfferedCourse {
-  id                                String                              @id @default(uuid())
-  courseId                          String
-  course                            Course                              @relation(fields: [courseId], references: [id])
-  academicDepartmentId              String
-  academicDepartment                AcademicDepartment                  @relation(fields: [academicDepartmentId], references: [id])
-  semesterRegistrationId            String
-  semesterRegistration              SemesterRegistration                @relation(fields: [semesterRegistrationId], references: [id])
-  createdAt                         DateTime                            @default(now())
-  updatedAt                         DateTime                            @updatedAt
-  offeredCourseSelections           OfferedCourseSection[]
+  id                                 String                              @id @default(uuid())
+  courseId                           String
+  course                             Course                              @relation(fields: [courseId], references: [id])
+  academicDepartmentId               String
+  academicDepartment                 AcademicDepartment                  @relation(fields: [academicDepartmentId], references: [id])
+  semesterRegistrationId             String
+  semesterRegistration               SemesterRegistration                @relation(fields: [semesterRegistrationId], references: [id])
+  createdAt                          DateTime                            @default(now())
+  updatedAt                          DateTime                            @updatedAt
+  offeredCourseSelections            OfferedCourseSection[]
   studentSemesterRegistrationCourses StudentSemesterRegistrationCourse[]
 
   @@map("offered_courses")
 }
 
 model OfferedCourseSection {
-  id                                String                              @id @default(uuid())
-  title                             String
-  maxCapacity                       Int
-  currentlyEnrolledStudent          Int                                 @default(0)
-  offeredCourseId                   String
-  offeredCourse                     OfferedCourse                       @relation(fields: [offeredCourseId], references: [id])
-  semesterRegistrationId            String
-  semesterRegistration              SemesterRegistration                @relation(fields: [semesterRegistrationId], references: [id])
-  createdAt                         DateTime                            @default(now())
-  updatedAt                         DateTime                            @updatedAt
-  offeredCourseClassSchedules       OfferedCourseClassSchedule[]
+  id                                 String                              @id @default(uuid())
+  title                              String
+  maxCapacity                        Int
+  currentlyEnrolledStudent           Int                                 @default(0)
+  offeredCourseId                    String
+  offeredCourse                      OfferedCourse                       @relation(fields: [offeredCourseId], references: [id])
+  semesterRegistrationId             String
+  semesterRegistration               SemesterRegistration                @relation(fields: [semesterRegistrationId], references: [id])
+  createdAt                          DateTime                            @default(now())
+  updatedAt                          DateTime                            @updatedAt
+  offeredCourseClassSchedules        OfferedCourseClassSchedule[]
   studentSemesterRegistrationCourses StudentSemesterRegistrationCourse[]
 
   @@map("offered_course_selection")
 }
 
 model SemesterRegistration {
-  id                                String                              @id @default(uuid())
-  startDate                         DateTime
-  endDate                           DateTime
-  status                            SemesterRegistrationStatus?         @default(UPCOMING)
-  minCredit                         Int                                 @default(0)
-  maxCredit                         Int                                 @default(0)
-  createdAt                         DateTime                            @default(now())
-  updatedAt                         DateTime                            @updatedAt
-  academicSemesterId                String
-  academicSemester                  AcademicSemester                    @relation(fields: [academicSemesterId], references: [id])
-  offeredCourses                    OfferedCourse[]
-  offeredCourseSelections           OfferedCourseSection[]
-  offeredCourseClassSchedules       OfferedCourseClassSchedule[]
-  studentSemesterRegistrations      StudentSemesterRegistration[]
+  id                                 String                              @id @default(uuid())
+  startDate                          DateTime
+  endDate                            DateTime
+  status                             SemesterRegistrationStatus?         @default(UPCOMING)
+  minCredit                          Int                                 @default(0)
+  maxCredit                          Int                                 @default(0)
+  createdAt                          DateTime                            @default(now())
+  updatedAt                          DateTime                            @updatedAt
+  academicSemesterId                 String
+  academicSemester                   AcademicSemester                    @relation(fields: [academicSemesterId], references: [id])
+  offeredCourses                     OfferedCourse[]
+  offeredCourseSelections            OfferedCourseSection[]
+  offeredCourseClassSchedules        OfferedCourseClassSchedule[]
+  studentSemesterRegistrations       StudentSemesterRegistration[]
   studentSemesterRegistrationCourses StudentSemesterRegistrationCourse[]
 
   @@map("semester_registration")
