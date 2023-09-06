@@ -7,6 +7,12 @@ import { ENUM_USER_ROLE } from '../../../enums/user';
 
 const router = express.Router();
 
+router.get(
+  '/get-my-registration',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.getMyRegistration
+);
+
 router.post(
   '/create-semester-registration',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
@@ -34,7 +40,6 @@ router.delete(
   SemesterRegistrationController.deleteSemesterRegistration
 );
 
-
 router.post(
   '/create-student-semester-registration',
   auth(ENUM_USER_ROLE.STUDENT),
@@ -55,5 +60,10 @@ router.post(
   SemesterRegistrationController.withdrewFromCourse
 );
 
+router.post(
+  '/confirm-registration-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.confirmCourseRegistration
+);
 
 export const SemesterRegistrationRouter = router;

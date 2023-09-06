@@ -92,7 +92,7 @@ const deleteSemesterRegistration = catchAsync(
 
 const createStudentSemesterRegistration = catchAsync(
   async (req: Request, res: Response) => {
-    const student = (req as any).user
+    const student = (req as any).user;
     const result =
       await SemesterRegistrationServices.createStudentSemesterRegistration(
         student.userId
@@ -107,22 +107,20 @@ const createStudentSemesterRegistration = catchAsync(
   }
 );
 
-const enrollFromCourse = catchAsync(
-  async (req: Request, res: Response) => {
-    const student = (req as any).user;
-    const result =
-      await SemesterRegistrationServices.enrollFromCourse(
-        student.userId, req.body
-      );
+const enrollFromCourse = catchAsync(async (req: Request, res: Response) => {
+  const student = (req as any).user;
+  const result = await SemesterRegistrationServices.enrollFromCourse(
+    student.userId,
+    req.body
+  );
 
-    sendResponse(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Enroll course successfully',
-      data: result,
-    });
-  }
-);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Enroll course successfully',
+    data: result,
+  });
+});
 
 const withdrewFromCourse = catchAsync(async (req: Request, res: Response) => {
   const student = (req as any).user;
@@ -139,6 +137,39 @@ const withdrewFromCourse = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const confirmCourseRegistration = catchAsync(
+  async (req: Request, res: Response) => {
+    const student = (req as any).user;
+    const result = await SemesterRegistrationServices.confirmCourseRegistration(
+      student.userId
+    );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Confirm your registration',
+      data: result,
+    });
+  }
+);
+
+const getMyRegistration = catchAsync(async (req: Request, res: Response) => {
+  const user = (req as any).user;
+  console.log(user)
+  console.log(user)
+  const result = await SemesterRegistrationServices.getMyRegistration(
+    user.userId
+  );
+  console.log(result);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'My registration data fetched!',
+    data: result,
+  });
+});
+
+
 
 export const SemesterRegistrationController = {
   createSemesterRegistration,
@@ -149,4 +180,6 @@ export const SemesterRegistrationController = {
   createStudentSemesterRegistration,
   enrollFromCourse,
   withdrewFromCourse,
+  confirmCourseRegistration,
+  getMyRegistration,
 };
