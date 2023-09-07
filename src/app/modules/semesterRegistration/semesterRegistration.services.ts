@@ -19,6 +19,7 @@ import {
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constant';
 import { StudentSemesterRegistrationCourse } from '../StudentSemesterRegistrationCourser/StudentSemesterRegistrationCourser.services';
+import { asyncForEach } from '../../../shared/utils';
 
 const createSemesterRegistration = async (
   payload: SemesterRegistration
@@ -377,16 +378,72 @@ const startNewSemester = async (id: string) => {
     );
   }
 
-  const updateStatus = await prisma.academicSemester.update({
-    where: {
-      id: semesterRegistration.academicSemester.id,
-    },
-    data: {
-      isCurrent: true,
-    },
+  if (semesterRegistration.academicSemester.isCurrent) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Semester is already started');
+  }
+  console.log(semesterRegistration.academicSemester);
+
+  await prisma.$transaction(async prismaTransactionClient => {
+    const result = await prismaTransactionClient.academicSemester.updateMany({
+      where: {
+        isCurrent: true,
+      },
+      data: {
+        isCurrent: false,
+      },
+    });
+    console.log(result);
+
+    await prisma.academicSemester.update({
+      where: {
+        id: semesterRegistration.academicSemester.id,
+      },
+      data: {
+        isCurrent: true,
+      },
+    });
   });
 
-  return updateStatus;
+  const studentSemesterRegistration =
+    await prisma.studentSemesterRegistration.findMany({
+      where: {
+        semesterRegistration: {
+          id,
+        },
+        isConfirmed: true,
+      },
+    });
+  
+  
+  asyncForEach(
+    studentSemesterRegistration, 
+    async (studentSemReg: StudentSemesterRegistration) => {
+      const studentSemesterRegistrationCourses = await prisma.studentSemesterRegistrationCourse.findMany({
+        where: {
+          semesterRegistration: {
+            id
+          }, 
+          student: {
+            id: studentSemReg.studentId
+          },
+        },
+        include: {
+          offeredCourse: {
+            include: {
+              course: true
+            }
+          }
+        }
+        
+      })
+
+      console.log(studentSemesterRegistrationCourses)
+    }
+  )
+
+  return {
+    message: 'Semester started successfully',
+  };
 };
 
 export const SemesterRegistrationServices = {

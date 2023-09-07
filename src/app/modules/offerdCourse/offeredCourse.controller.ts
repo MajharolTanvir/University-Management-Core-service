@@ -8,6 +8,7 @@ import { paginationFields } from '../../../constants/pagination';
 import { offeredCourseFilterableFields } from './offeredCourse.constant';
 
 const createOfferedCourses = catchAsync(async (req: Request, res: Response) => {
+  console.log(req.body)
   const result = await OfferedCourseServices.createOfferedCourses(req.body);
 
   sendResponse(res, {

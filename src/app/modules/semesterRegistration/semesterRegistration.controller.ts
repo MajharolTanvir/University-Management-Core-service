@@ -170,9 +170,10 @@ const getMyRegistration = catchAsync(async (req: Request, res: Response) => {
 });
 
 const startNewSemester = catchAsync(async (req: Request, res: Response) => {
-  const result = await SemesterRegistrationServices.getMyRegistration(
+  const result = await SemesterRegistrationServices.startNewSemester(
     req.params.id
   );
+  
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
