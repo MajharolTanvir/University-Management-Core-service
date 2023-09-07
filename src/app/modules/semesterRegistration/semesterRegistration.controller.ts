@@ -155,12 +155,9 @@ const confirmCourseRegistration = catchAsync(
 
 const getMyRegistration = catchAsync(async (req: Request, res: Response) => {
   const user = (req as any).user;
-  console.log(user);
-  console.log(user);
   const result = await SemesterRegistrationServices.getMyRegistration(
     user.userId
   );
-  console.log(result);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

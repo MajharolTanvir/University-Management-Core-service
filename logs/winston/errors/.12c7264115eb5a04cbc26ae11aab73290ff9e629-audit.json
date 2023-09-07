@@ -134,6 +134,26 @@
             "date": 1694083064173,
             "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-07-09-16-error.log",
             "hash": "6de9a3e4f80bb07478916e7128044a15fcac70e660aff87479179a13a706f8b4"
+        },
+        {
+            "date": 1694086234369,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-07-09-17-error.log",
+            "hash": "866666a65fea2897136888ccd5c3c3007ae6a74872f2773cfda8bcb03e485059"
+        },
+        {
+            "date": 1694089262644,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-07-09-18-error.log",
+            "hash": "185711128e327ae1f0e2c71d8ea98e335146e8e4cf2e25eced554dcdef6eb207"
+        },
+        {
+            "date": 1694092338980,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-07-09-19-error.log",
+            "hash": "44e75909202e625b1692f9e2ae8b6bcb79aefa782271fa0b5acd07d9613fa51a"
+        },
+        {
+            "date": 1694095203727,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/errors/phu-2023-07-09-20-error.log",
+            "hash": "898f2e7a3b300ce466cdc60899bb8c5fb82ad113332384da1e507b4a7e5adc39"
         }
     ],
     "hashType": "sha256"

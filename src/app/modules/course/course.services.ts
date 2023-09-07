@@ -37,7 +37,7 @@ const createCourse = async (data: ICourseCreatedData): Promise<any> => {
                 preRequisiteId: preRequisiteCourses.courseId,
               },
             });
-          console.log(createPrerequisite);
+          console.log(createPrerequisite)
         }
       );
     }
@@ -208,7 +208,7 @@ const updateCourse = async (id: string, payload: ICourseCreatedData) => {
       await asyncForEach(
         updatePrerequisite,
         async (insertPrerequisite: IPrerequisiteCourseRequest) => {
-          console.log(insertPrerequisite);
+
           await courseTransaction.courseToPrerequisite.create({
             data: {
               courseId: id,

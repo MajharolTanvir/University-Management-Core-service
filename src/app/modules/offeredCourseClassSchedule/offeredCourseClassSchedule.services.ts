@@ -42,7 +42,6 @@ const getAllOfferedCourseClassSchedule = async (
   const andConditions = [];
 
   if (searchTerm) {
-    console.log(searchTerm);
     andConditions.push({
       OR: OfferedCourseClassScheduleSearchableFields.map(field => ({
         [field]: {
