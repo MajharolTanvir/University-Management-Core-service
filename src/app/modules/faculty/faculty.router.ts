@@ -14,6 +14,13 @@ router.post(
   FacultyController.createFaculty
 );
 
+router.get(
+  '/my-courses',
+  auth(ENUM_USER_ROLE.FACULTY),
+  FacultyController.myCourses
+);
+
+
 router.get('/', FacultyController.getAllFaculty);
 router.get('/:id', FacultyController.getSingleFaculty);
 router.patch(

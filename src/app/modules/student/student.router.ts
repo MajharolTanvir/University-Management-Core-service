@@ -16,6 +16,9 @@ router.post(
 
 router.get('/', StudentsController.getAllStudent);
 
+router.get('/my-courses',auth(ENUM_USER_ROLE.STUDENT), StudentsController.myCourses);
+
+
 router.get('/:id', StudentsController.getSingleStudent);
 router.patch(
   '/:id',
@@ -28,5 +31,6 @@ router.delete(
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   StudentsController.deleteStudent
 );
+
 
 export const StudentRouter = router;
