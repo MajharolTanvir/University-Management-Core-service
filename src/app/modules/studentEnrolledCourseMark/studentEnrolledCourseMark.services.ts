@@ -12,7 +12,7 @@ import {
 import { prisma } from '../../../shared/prisma';
 import ApiError from '../../../errors/ApiError';
 import httpStatus from 'http-status';
-import { StudentEnrolledCourseMarksUtils } from './studentEnrolledCourseMarksUtils';
+import { StudentEnrolledCourseMarksUtils } from './studentEnrolledCourseMarks.Utils';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
