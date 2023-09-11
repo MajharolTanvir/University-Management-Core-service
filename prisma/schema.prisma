@@ -83,6 +83,7 @@ model Student {
   studentEnrolledCourses             StudentEnrolledCourse[]
   studentEnrolledCourseMarks         StudentEnrolledCourseMark[]
   StudentSemesterPayment             StudentSemesterPayment[]
+  studentAcademicInfos               StudentAcademicInfo[]
 
   @@map("students")
 }
@@ -309,20 +310,32 @@ model StudentEnrolledCourseMark {
 }
 
 model StudentSemesterPayment {
-  id                  String           @id @default(uuid())
-  studentId           String
-  student             Student          @relation(fields: [studentId], references: [id])
-  academicSemesterId  String
-  academicSemester    AcademicSemester @relation(fields: [academicSemesterId], references: [id])
-  fullPaymentAmount   Int?             @default(0)
+  id                   String           @id @default(uuid())
+  studentId            String
+  student              Student          @relation(fields: [studentId], references: [id])
+  academicSemesterId   String
+  academicSemester     AcademicSemester @relation(fields: [academicSemesterId], references: [id])
+  fullPaymentAmount    Int?             @default(0)
   partialPaymentAmount Int?             @default(0)
-  totalDueAmount      Int?             @default(0)
-  totalPaymentAmount  Int?             @default(0)
-  paymentStatus       PaymentStatus?   @default(PENDING)
-  createdAt           DateTime         @default(now())
-  updatedAt           DateTime         @updatedAt
+  totalDueAmount       Int?             @default(0)
+  totalPaymentAmount   Int?             @default(0)
+  paymentStatus        PaymentStatus?   @default(PENDING)
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
 
   @@map("student_semester_payment ")
+}
+
+model StudentAcademicInfo {
+  id                   String   @id @default(uuid())
+  studentId            String
+  student              Student  @relation(fields: [studentId], references: [id])
+  totalCompletedCredit Int?     @default(0)
+  cgpa                 Float?   @default(0)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@map("student_academic_infos")
 }
 
 enum SemesterRegistrationStatus {

@@ -3,9 +3,21 @@ import { studentEnrolledCourseMarkController } from './studentEnrolledCourseMark
 
 const router = express.Router();
 
+
+
+router.get(
+  '/',
+  studentEnrolledCourseMarkController.getAllStudentCourseMarks
+);
+
 router.patch(
   '/update-marks',
   studentEnrolledCourseMarkController.updateStudentMarks
+);
+
+router.patch(
+  '/update-final-marks',
+  studentEnrolledCourseMarkController.updateStudentFinalMarks
 );
 
 export const StudentEnrolledCourseMarkRouter = router;

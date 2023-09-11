@@ -9,7 +9,6 @@ import { ZodError } from 'zod';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../shared/logger';
-import handlePrismaClientValidationError from '../../errors/handlePrismaClientValidationError';
 import { Prisma } from '@prisma/client';
 import handleUnknownRequestError from '../../errors/handleUnknownRequestError';
 
