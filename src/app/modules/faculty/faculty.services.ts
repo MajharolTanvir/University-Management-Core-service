@@ -184,8 +184,6 @@ const removeCourses = async (
   return assignCoursesData;
 };
 
-
-
 const myCourses = async (
   authUser: {
     userId: string;
@@ -272,6 +270,8 @@ const myCourses = async (
    );
    return courseAndSchedule;
 };
+
+
 
 export const FacultyService = {
   createFaculty,
