@@ -521,7 +521,6 @@ const getMySemesterRegCourses = async (authUserId: string) => {
     },
   });
 
-  //console.log(student);
 
   const semesterRegistration = await prisma.semesterRegistration.findFirst({
     where: {
@@ -536,7 +535,6 @@ const getMySemesterRegCourses = async (authUserId: string) => {
       academicSemester: true,
     },
   });
-  console.log(semesterRegistration);
 
   if (!semesterRegistration) {
     throw new ApiError(
@@ -609,7 +607,6 @@ const getMySemesterRegCourses = async (authUserId: string) => {
     },
   });
 
-  //console.log("Offered course: ", offeredCourse)
   const availableCourses = SemesterRegistrationUtils.getAvailableCourses(
     offeredCourse,
     studentCompletedCourse,
