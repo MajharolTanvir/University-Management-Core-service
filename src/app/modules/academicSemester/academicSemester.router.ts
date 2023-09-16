@@ -1,11 +1,13 @@
 import express from 'express';
-import { AcademicSemesterController } from './academicSemester.controller';
+import { ENUM_USER_ROLE } from '../../../enums/user';
+import auth from '../../middlewares/auth';
 import validateRequest from '../../middlewares/validateRequest';
 import { AcademicSemesterValidation } from './academicSemester.ZodValidation';
-import auth from '../../middlewares/auth';
-import { ENUM_USER_ROLE } from '../../../enums/user';
+import { AcademicSemesterController } from './academicSemester.controller';
 
 const router = express.Router();
+
+router.get('/', AcademicSemesterController.getAllAcademicSemester);
 
 router.post(
   '/create-semester',
@@ -14,7 +16,6 @@ router.post(
   AcademicSemesterController.createAcademicSemester
 );
 
-router.get('/', AcademicSemesterController.getAllAcademicSemester);
 
 router.get('/:id', AcademicSemesterController.getSingleAcademicSemester);
 router.patch(

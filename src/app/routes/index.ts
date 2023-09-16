@@ -1,20 +1,17 @@
 import express from 'express';
-import { academicSemesterRouter } from '../modules/academicSemester/academicSemester.router';
-import { AcademicFacultyRouter } from '../modules/academicFaculty/academicFaculty.router';
 import { AcademicDepartmentRouter } from '../modules/academicDepartment/academicDepartment.router';
-import { StudentRouter } from '../modules/student/student.router';
-import { FacultyRouter } from '../modules/faculty/faculty.router';
+import { AcademicFacultyRouter } from '../modules/academicFaculty/academicFaculty.router';
+import { academicSemesterRouter } from '../modules/academicSemester/academicSemester.router';
 import { BuildingRouter } from '../modules/building/building.router';
-import { RoomRouter } from '../modules/room/room.router';
 import { CourseRouter } from '../modules/course/course.router';
-import { SemesterRegistrationRouter } from '../modules/semesterRegistration/semesterRegistration.router';
+import { FacultyRouter } from '../modules/faculty/faculty.router';
 import { OfferedCoursesRouter } from '../modules/offerdCourse/offeredCourse.router';
-import { OfferedCourseSectionRouter } from '../modules/offeredCourseSection/offeredCourseSection.router';
 import { OfferedCourseClassScheduleRouter } from '../modules/offeredCourseClassSchedule/offeredCourseClassSchedule.router';
+import { OfferedCourseSectionRouter } from '../modules/offeredCourseSection/offeredCourseSection.router';
+import { RoomRouter } from '../modules/room/room.router';
+import { SemesterRegistrationRouter } from '../modules/semesterRegistration/semesterRegistration.router';
+import { StudentRouter } from '../modules/student/student.router';
 import { StudentEnrolledCourseMarkRouter } from '../modules/studentEnrolledCourseMark/studentEnrolledCourseMark.router';
-
-
-
 
 const router = express.Router();
 
