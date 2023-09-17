@@ -7,6 +7,8 @@ import { prisma } from '../../../shared/prisma';
 import {
   AcademicSemesterSearchableFields,
   EVENT_ACADEMIC_SEMESTER_CREATED,
+  EVENT_ACADEMIC_SEMESTER_DELETED,
+  EVENT_ACADEMIC_SEMESTER_UPDATED,
   academicSemesterTitleCodeMapper,
 } from './academicSemester.constant';
 import { IAcademicSemesterFilterRequest } from './academicSemester.interface';
@@ -25,14 +27,14 @@ const createAcademicSemester = async (
   });
 
   if (result) {
-  await RedisClient.publish(
-    EVENT_ACADEMIC_SEMESTER_CREATED,
-    JSON.stringify(result)
-  );
-}
+    await RedisClient.publish(
+      EVENT_ACADEMIC_SEMESTER_CREATED,
+      JSON.stringify(result)
+    );
+  }
 
   return result;
-};  
+};
 
 const getAllAcademicSemester = async (
   filters: IAcademicSemesterFilterRequest,
@@ -114,6 +116,13 @@ const updateAcademicSemester = async (
     data: payload,
   });
 
+  if (result) {
+    await RedisClient.publish(
+      EVENT_ACADEMIC_SEMESTER_UPDATED,
+      JSON.stringify(result)
+    );
+  }
+
   return result;
 };
 
@@ -125,6 +134,13 @@ const deleteAcademicSemester = async (
       id,
     },
   });
+
+  if (result) {
+    await RedisClient.publish(
+      EVENT_ACADEMIC_SEMESTER_DELETED,
+      JSON.stringify(result)
+    );
+  }
 
   return result;
 };
