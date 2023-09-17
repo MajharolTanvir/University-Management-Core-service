@@ -4,6 +4,8 @@ import { IPaginationOptions } from '../../../interfaces/pagination';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IAcademicDepartmentFilterableFiled } from './academicDepartment.Interface';
 import { IGenericResponse } from '../../../interfaces/common';
+import { RedisClient } from '../../../shared/redis';
+import { EVENT_ACADEMIC_DEPARTMENT_CREATED, EVENT_ACADEMIC_DEPARTMENT_DELETED, EVENT_ACADEMIC_DEPARTMENT_UPDATED } from './academicDepartment.constant';
 
 const createAcademicDepartment = async (
   payload: AcademicDepartment
@@ -14,6 +16,15 @@ const createAcademicDepartment = async (
       academicFaculty: true,
     },
   });
+
+
+  if (result) {
+    await RedisClient.publish(
+      EVENT_ACADEMIC_DEPARTMENT_CREATED,
+      JSON.stringify(result)
+    );
+  }
+
   return result;
 };
 
@@ -93,6 +104,14 @@ const updateAcademicDepartment = async (
       academicFaculty: true
     }
   });
+
+
+  if (result) {
+    await RedisClient.publish(
+      EVENT_ACADEMIC_DEPARTMENT_UPDATED,
+      JSON.stringify(result)
+    );
+  }
   return result;
 };
 
@@ -107,6 +126,13 @@ const deleteAcademicDepartment = async (
       academicFaculty: true
     }
   });
+
+  if (result) {
+    await RedisClient.publish(
+      EVENT_ACADEMIC_DEPARTMENT_DELETED,
+      JSON.stringify(result)
+    );
+  }
   return result;
 };
 
