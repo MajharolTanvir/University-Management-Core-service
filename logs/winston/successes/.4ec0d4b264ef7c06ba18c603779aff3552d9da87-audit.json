@@ -189,6 +189,26 @@
             "date": 1695023150348,
             "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/phu-2023-18-09-13-success.log",
             "hash": "30bc45362cfa7399b0ed6581c5b40674c56916d1e8b505221162de5bfaf7603c"
+        },
+        {
+            "date": 1695027192648,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/phu-2023-18-09-14-success.log",
+            "hash": "53d28cf2f1a8b059368b4973e3fbaf9156516c3acec6e85360d038054ed3f134"
+        },
+        {
+            "date": 1695027951316,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/phu-2023-18-09-15-success.log",
+            "hash": "46a5a0a91b85b051ddae6bcf408136d210df18878513bffedcf294dac42eed85"
+        },
+        {
+            "date": 1695031969437,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/phu-2023-18-09-16-success.log",
+            "hash": "bd2a74f27c2a9c69fdfe46a49f67ad83bf9ec73ccc04f057a593cf0742d90196"
+        },
+        {
+            "date": 1695035402107,
+            "name": "/home/webshilpo/Working-files/complete-project/university-management/university-management-core/logs/winston/successes/phu-2023-18-09-17-success.log",
+            "hash": "f9bc89591ca5ddfc1a43ecd9d57eb2aaf523692f14077b3fa2470cf07695f831"
         }
     ],
     "hashType": "sha256"

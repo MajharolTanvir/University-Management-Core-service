@@ -3,7 +3,7 @@ import { z } from 'zod';
 const createRoom = z.object({
   body: z.object({
     roomNumber: z.string({
-      required_error: 'Title is required',
+      required_error: 'Room number is required',
     }),
     floor: z.string({
       required_error: 'Floor is required',

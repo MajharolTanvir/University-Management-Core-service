@@ -286,7 +286,6 @@ const assignFaculties = async (
   return assignFacultiesData;
 };
 
-
 const removeFaculties = async (id:string, payload: string[]):Promise<CourseFaculty[] | null> => {
   await prisma.courseFaculty.deleteMany({
     where: {

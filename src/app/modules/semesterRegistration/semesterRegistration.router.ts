@@ -12,6 +12,7 @@ router.get(
   auth(ENUM_USER_ROLE.STUDENT),
   SemesterRegistrationController.getMyRegistration
 );
+
 router.get(
   '/get-my-semester-courses',
   auth(ENUM_USER_ROLE.STUDENT),

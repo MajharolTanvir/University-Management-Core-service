@@ -1,17 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
-import { studentEnrolledCourseMarkServices } from './studentEnrolledCourseMark.services';
+import { StudentEnrolledCourseMarkServices } from './studentEnrolledCourseMark.services';
 import pick from '../../../shared/pick';
 import { studentEnrolledCourseMarkFilterableFields } from './studentEnrolledCourseMark.constant';
+import { paginationFields } from '../../../constants/pagination';
 
 const getAllStudentCourseMarks = catchAsync(
   async (req: Request, res: Response) => {
     const filters = pick(req.query, studentEnrolledCourseMarkFilterableFields);
     const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
     const result =
-      await studentEnrolledCourseMarkServices.getAllStudentCourseMarks(
+      await StudentEnrolledCourseMarkServices.getAllStudentCourseMarks(
         filters,
         options
       );
@@ -26,7 +28,7 @@ const getAllStudentCourseMarks = catchAsync(
 );
 
 const updateStudentMarks = catchAsync(async (req: Request, res: Response) => {
-  const result = await studentEnrolledCourseMarkServices.updateStudentMarks(
+  const result = await StudentEnrolledCourseMarkServices.updateStudentMarks(
     req.body
   );
 
@@ -41,7 +43,7 @@ const updateStudentMarks = catchAsync(async (req: Request, res: Response) => {
 const updateStudentFinalMarks = catchAsync(
   async (req: Request, res: Response) => {
     const result =
-      await studentEnrolledCourseMarkServices.updateStudentFinalMarks(req.body);
+      await StudentEnrolledCourseMarkServices.updateStudentFinalMarks(req.body);
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
@@ -52,8 +54,28 @@ const updateStudentFinalMarks = catchAsync(
   }
 );
 
-export const studentEnrolledCourseMarkController = {
+const getMyCourseMarks = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, studentEnrolledCourseMarkFilterableFields);
+  const options = pick(req.query, paginationFields);
+  const user = (req as any).user;
+
+  const result = await StudentEnrolledCourseMarkServices.getMyCourseMarks(
+    filters,
+    options,
+    user
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student course marks fetched successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
+
+export const StudentEnrolledCourseMarkController = {
   getAllStudentCourseMarks,
   updateStudentMarks,
   updateStudentFinalMarks,
+  getMyCourseMarks,
 };
