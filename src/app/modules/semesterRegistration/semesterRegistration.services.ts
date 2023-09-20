@@ -25,7 +25,6 @@ import {
 import { asyncForEach } from '../../../shared/utils';
 import { StudentSemesterRegistrationCourseService } from '../StudentSemesterRegistrationCourser/StudentSemesterRegistrationCourser.services';
 import { StudentSemesterPaymentService } from '../studentSemesterPayment/studentSemesterPayment.services';
-import { studentEnrolledCourseMarkServices } from '../studentEnrolledCourseMark/studentEnrolledCourseMark.services';
 import { SemesterRegistrationUtils } from './semesterRegistration.utils';
 
 const createSemesterRegistration = async (

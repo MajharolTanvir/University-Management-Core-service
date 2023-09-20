@@ -1,0 +1,50 @@
+Wed Sep 20 2023 11:57:18 } [PH] error: 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    studentId: "380200003",
+    lastName: undefined,
+    middleName: undefined,
+    email: "ahmed@gmail.com",
+    contactNo: "Ahmed",
+    gender: "male",
+    bloodGroup: "O+",
+    academicSemesterId: "91470db4-237b-4e9d-a3ce-e8c7b44d94d2",
+    academicFacultyId: "71a09293-0924-41c5-a94f-58a0db3d865c",
+    academicDepartmentId: "0e479e82-af99-486b-8d25-5e0ae907c1f2",
++   firstName: String
+  },
+  include: {
+    academicSemester: true,
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `firstName` is missing.
+Wed Sep 20 2023 11:58:47 } [PH] error: 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    studentId: "380200004",
+    lastName: undefined,
+    middleName: undefined,
+    email: "jamil@gmail.com",
+    contactNo: "Jamil",
+    gender: "male",
+    bloodGroup: "O+",
+    academicSemesterId: "91470db4-237b-4e9d-a3ce-e8c7b44d94d2",
+    academicFacultyId: "71a09293-0924-41c5-a94f-58a0db3d865c",
+    academicDepartmentId: "0e479e82-af99-486b-8d25-5e0ae907c1f2",
++   firstName: String
+  },
+  include: {
+    academicSemester: true,
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `firstName` is missing.
