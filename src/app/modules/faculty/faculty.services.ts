@@ -4,7 +4,7 @@ import { prisma } from '../../../shared/prisma';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
-import { IFacultyFilterRequest } from './faculty.interface';
+import { FacultyCreatedEvent, IFacultyFilterRequest } from './faculty.interface';
 import {
   facultyRelationalFields,
   facultyRelationalFieldsMapper,
@@ -271,6 +271,28 @@ const myCourses = async (
    return courseAndSchedule;
 };
 
+const createFacultyFromEvent = async (
+  e: FacultyCreatedEvent
+): Promise<void> => {
+  const faculty: Partial<Faculty> = {
+    facultyId: e.id,
+    firstName: e.name.firstName,
+    lastName: e.name.lastName,
+    middleName: e.name.middleName,
+    profileImage: e.profileImage,
+    email: e.email,
+    contactNo: e.contactNo,
+    gender: e.gender,
+    bloodGroup: e.bloodGroup,
+    designation: e.designation,
+    academicDepartmentId: e.academicDepartment.syncId,
+    academicFacultyId: e.academicFaculty.syncId,
+  };
+
+  const data = await createFaculty(faculty as Faculty);
+  console.log('RES: ', data);
+};
+
 
 
 export const FacultyService = {
@@ -282,4 +304,5 @@ export const FacultyService = {
   assignCourses,
   removeCourses,
   myCourses,
+  createFacultyFromEvent,
 };
