@@ -1,5 +1,5 @@
 import { RedisClient } from '../../../shared/redis';
-import { EVENT_STUDENT_CREATED } from './student.constant';
+import { EVENT_STUDENT_CREATED, EVENT_STUDENT_UPDATED } from './student.constant';
 import { StudentService } from './student.services';
 
 const initStudentEvents = () => {
@@ -7,6 +7,13 @@ const initStudentEvents = () => {
     const data = JSON.parse(e);
 
     await StudentService.createStudentFromEvent(data);
+  });
+
+
+  RedisClient.subscribe(EVENT_STUDENT_UPDATED, async (e: string) => {
+    const data = JSON.parse(e);
+
+    await StudentService.updateStudentFromEvent(data);
   });
 };
 
